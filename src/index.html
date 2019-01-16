@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      html {
+        --color-primary: #3b013b;
+        --color-primary-inverse: white;
+        --color-primary-highlight: #740f74;
+      }
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+    <script src="/build/mycomponent.js"></script>
+
+    <!--
+      <style>
+        body {
+          font-family: sans-serif;
+        }
+
+        .side-nav ul {
+          list-style: none;
+        }
+
+        .side-nav li {
+          margin: 1rem 0;
+        }
+
+        .side-nav a {
+          text-decoration: none;
+          color: black;
+        }
+      </style>
+    -->
+  </head>
+  <body>
+    <uc-stock-price stock-symbol="aapl"></uc-stock-price>
+    <uc-stock-finder></uc-stock-finder>
+
+    <button id="side-drawer-btn">Open Side Menu</button>
+    <p>
+      Let's test this new
+      <uc-tooltip text="We built this before, now it is better!"
+        >tooltip!</uc-tooltip
+      >
+    </p>
+    <uc-side-drawer title="Main Menu">
+      <nav class="side-nav">
+        <ul>
+          <li><a href="/">A link</a></li>
+          <li><a href="/">Another link</a></li>
+          <li><a href="/">A third link</a></li>
+        </ul>
+      </nav>
+    </uc-side-drawer>
+
+    <script>
+      const sideDrawerButton = document.querySelector('#side-drawer-btn')
+      const sideDrawer = document.querySelector('uc-side-drawer')
+      sideDrawerButton.addEventListener('click', () => {
+        if (!sideDrawer.opened) {
+          console.log('opening side drawer')
+          // sideDrawer.open = true
+          sideDrawer.open()
+        }
+      })
+      setTimeout(() => {
+        // (sideDrawer.title = 'it changed!')
+        sideDrawer.setAttribute('title', 'attribute change')
+      }, 3000)
+    </script>
+
+    <script>
+      const stockFinderEl = document.querySelector('uc-stock-finder')
+      stockFinderEl.addEventListener('ucSymbolSelected', event => {
+        console.log(event)
+      })
+    </script>
+  </body>
+</html>
